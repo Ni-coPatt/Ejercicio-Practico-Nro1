@@ -1,4 +1,4 @@
-#!/bin/bash#
+#!/bin/bash
 
 # consolidar.sh  -  Script de consolidación de archivos de alumnos
 #

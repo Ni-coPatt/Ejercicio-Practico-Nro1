@@ -1,4 +1,4 @@
-#!/bin/bash#
+#!/bin/bash
 
 # menu.sh  -  Ejercicio Práctico Nro. 1
 #
@@ -23,29 +23,29 @@ PROCESADO_DIR="$BASE_DIR/procesado"
 # Función: mostrar_menu
 # Imprime el menú de opciones en pantalla.
 mostrar_menu() {
-    echo ""
-    echo "-------------------------------------"
-    echo "   Ejercicio Práctico Nro. 1 - BASH  "
-    echo "-------------------------------------"
-    echo "  1) Crear entorno"
-    echo "  2) Correr proceso (background)"
-    echo "  3) Listar alumnos por padrón"
-    echo "  4) Ver las 10 notas más altas"
-    echo "  5) Buscar alumno por padrón"
-    echo "  6) Salir"
-    echo "-------------------------------------"
-    echo -n "Seleccione una opción: "
+  echo ""
+  echo "-------------------------------------"
+  echo "   Ejercicio Práctico Nro. 1 - BASH  "
+  echo "-------------------------------------"
+  echo "  1) Crear entorno"
+  echo "  2) Correr proceso (background)"
+  echo "  3) Listar alumnos por padrón"
+  echo "  4) Ver las 10 notas más altas"
+  echo "  5) Buscar alumno por padrón"
+  echo "  6) Salir"
+  echo "-------------------------------------"
+  echo -n "Seleccione una opción: "
 }
 
 while true; do
-    mostrar_menu
-    read -r opcion
-    case $opcion in
-         6)
-            echo ""
-            echo "Saliendo. ¡Hasta luego!"
-            exit 0
-            ;;
-    esac
+  mostrar_menu
+  read -r opcion
+  case $opcion in
+  6)
+    echo ""
+    echo "Saliendo. ¡Hasta luego!"
+    exit 0
+    ;;
+  esac
 
 done
