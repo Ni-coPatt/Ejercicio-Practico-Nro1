@@ -41,11 +41,16 @@ while true; do
   mostrar_menu
   read -r opcion
   case $opcion in
-  6)
-    echo ""
-    echo "Saliendo. ¡Hasta luego!"
-    exit 0
-    ;;
+   1) crear_entorno  ;;
+   2) correr_proceso ;;
+   3) listar_alumnos ;;
+   4) top_notas      ;;
+   5) buscar_alumno  ;;
+   6)
+     echo ""
+     echo "Saliendo. ¡Hasta luego!"
+     exit 0
+     ;;
   esac
 
 done
