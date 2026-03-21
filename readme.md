@@ -30,6 +30,25 @@ Copiar archivos `.txt` con el formato correcto en `~/EPNro1/entrada/`. El proces
 ```
 bash menu.sh -d
 ```
+## Ayuda visual(flujo de archivos)
+```
+  +----------------+          +----------------------+
+  |   entrada/     |  --->    | consolidar.sh (BG)   |
+  | *.txt          |          |  Monitorea carpeta   |
+  +----------------+          +----------------------+
+                                    |
+                                    v
+                          +----------------------+
+                          |   salida/$FILENAME.txt|
+                          | Archivo consolidado   |
+                          +----------------------+
+                                    |
+                                    v
+                          +----------------------+
+                          |  procesado/          |
+                          | Archivos originales  |
+                          +----------------------+
+```
 
 ## Formato de los archivos de entrada
 
