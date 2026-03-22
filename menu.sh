@@ -37,20 +37,43 @@ mostrar_menu() {
   echo -n "Seleccione una opción: "
 }
 
+# Variable de entorno obligatoria
+if [ -z "$FILENAME" ]; then
+  echo "Error: definí la variable de entorno FILENAME"
+  exit 1
+fi
+
+ARCHIVO="$SALIDA_DIR/$FILENAME.txt"
+
 while true; do
   mostrar_menu
   read -r opcion
   case $opcion in
-   1) crear_entorno  ;;
-   2) correr_proceso ;;
-   3) listar_alumnos ;;
-   4) top_notas      ;;
-   5) buscar_alumno  ;;
-   6)
-     echo ""
-     echo "Saliendo. ¡Hasta luego!"
-     exit 0
-     ;;
+  1) crear_entorno ;;
+  2) correr_proceso ;;
+  3) #muestra todo ordenado por número de padrón
+    if [ -f "$ARCHIVO" ]; then
+      echo "Listado de alumnos ordenado por número de padrón:"
+      cat "$ARCHIVO" | sort
+    else
+      echo "Archivo $ARCHIVO no existe."
+    fi
+    ;;
+  4)
+    #muestra las 10 notas más altas ordenadas de mayor a menor
+    if [ -f "$ARCHIVO" ]; then
+      echo "Top 10 notas más altas:"
+      cat "$ARCHIVO" | sort -r | head -n 10
+    else
+      echo "Archivo $ARCHIVO no existe."
+    fi
+    ;;
+  5) buscar_alumno ;;
+  6)
+    echo ""
+    echo "Saliendo. ¡Hasta luego!"
+    exit 0
+    ;;
   esac
 
 done
