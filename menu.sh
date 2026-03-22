@@ -59,8 +59,7 @@ while true; do
       echo "Archivo $ARCHIVO no existe."
     fi
     ;;
-  4)
-    #muestra las 10 notas más altas ordenadas de mayor a menor
+  4) #muestra las 10 notas más altas ordenadas de mayor a menor
     if [ -f "$ARCHIVO" ]; then
       echo "Top 10 notas más altas:"
       cat "$ARCHIVO" | sort -r | head -n 10
