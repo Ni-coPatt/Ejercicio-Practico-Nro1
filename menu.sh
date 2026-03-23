@@ -50,7 +50,9 @@ while true; do
   read -r opcion
   case $opcion in
   1) crear_entorno ;;
-  2) correr_proceso ;;
+  2) bash consolidar.sh
+    #llama al proceso consolidar
+  ;;
   3) #muestra todo ordenado por número de padrón
     if [ -f "$ARCHIVO" ]; then
       echo "Listado de alumnos ordenado por número de padrón:"
