@@ -71,7 +71,7 @@ while true; do
     read -p "Ingrese el numero de padron: " padron
      #Existencia del archivo y datos del padron
     if [ -f "$ARCHIVO" ]; then
-      datos=$(grep "^$padron" "$ARCHIVOS")
+      datos=$(grep "^$padron" "$ARCHIVO")
       if [ -n "$datos" ]; then
         echo "Datos Correspondientes: "
         echo "$datos"
