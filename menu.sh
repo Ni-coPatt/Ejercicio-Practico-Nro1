@@ -67,7 +67,23 @@ while true; do
       echo "Archivo $ARCHIVO no existe."
     fi
     ;;
-  5) buscar_alumno ;;
+  5) #Muestra los datos segun el padron ingresado
+    read -p "Ingrese el numero de padron: " padron
+     #Existencia del archivo y datos del padron
+    if [ -f "$ARCHIVO" ]; then
+      datos=$(grep "^$padron" "$ARCHIVOS")
+      if [ -n "$datos" ]; then
+        echo "Datos Correspondientes: "
+        echo "$datos"
+      else 
+        echo "Sin coincidencias"
+      fi
+    else
+      echo "El archivo $ARCHIVO no existe"
+    fi
+    ;;
+
+    ;;
   6)
     echo ""
     echo "Saliendo. ¡Hasta luego!"
