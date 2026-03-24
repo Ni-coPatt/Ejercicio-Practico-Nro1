@@ -84,8 +84,6 @@ while true; do
       echo "El archivo $ARCHIVO no existe"
     fi
     ;;
-
-    ;;
   6)
     echo ""
     echo "Saliendo. ¡Hasta luego!"
