@@ -49,7 +49,12 @@ while true; do
   mostrar_menu
   read -r opcion
   case $opcion in
-  1) crear_entorno ;;
+  1) # Crea el directorio base EPNro1 con sus subcarpetas entrada, salida y procesado.
+    {
+    mkdir -p "$ENTRADA_DIR" "$SALIDA_DIR" "$PROCESADO_DIR"
+    echo "Entorno creado en $BASE_DIR"
+  }
+  ;;
   2) bash consolidar.sh
     #llama al proceso consolidar
   ;;
