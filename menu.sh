@@ -64,12 +64,28 @@ while true; do
   4) #muestra las 10 notas más altas ordenadas de mayor a menor
     if [ -f "$ARCHIVO" ]; then
       echo "Top 10 notas más altas:"
-      cat "$ARCHIVO" | sort -r | head -n 10
+      sort -k5 -nr "$ARCHIVO" | head -n 10 # -k5 = columna 5(nota) -nr= toma num de mayor a menor| muestra en pantalla
     else
       echo "Archivo $ARCHIVO no existe."
     fi
     ;;
-  5) buscar_alumno ;;
+  5) #Muestra los datos segun el padron ingresado
+    read -p "Ingrese el numero de padron: " padron
+     #Existencia del archivo y datos del padron
+    if [ -f "$ARCHIVO" ]; then
+      datos=$(grep "^$padron" "$ARCHIVO")
+      if [ -n "$datos" ]; then
+        echo "Datos Correspondientes: "
+        echo "$datos"
+      else 
+        echo "Sin coincidencias"
+      fi
+    else
+      echo "El archivo $ARCHIVO no existe"
+    fi
+    ;;
+
+    ;;
   6)
     echo ""
     echo "Saliendo. ¡Hasta luego!"
