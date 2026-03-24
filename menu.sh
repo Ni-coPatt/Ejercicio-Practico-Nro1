@@ -20,6 +20,23 @@ ENTRADA_DIR="$BASE_DIR/entrada"
 SALIDA_DIR="$BASE_DIR/salida"
 PROCESADO_DIR="$BASE_DIR/procesado"
 
+if [ "$1" == "-d" ]; then
+  # ps -ef lista procesos, grep filtra consolidar.sh, awk toma ID
+  proceso=$(ps -ef | grep "consolidar.sh" | grep -v grep | awk '{print $2}')
+
+  if [ -n "$proceso" ]; then
+    kill $proceso # Mata el proceso
+    echo "Proceso detenido"
+  else
+    echo "No hay proceso en ejecución"
+  fi
+
+  # Borramos todo el entorno
+  rm -rf "$BASE"
+  echo "Entorno eliminado"
+  exit 0
+fi
+
 # Función: mostrar_menu
 # Imprime el menú de opciones en pantalla.
 mostrar_menu() {
@@ -51,13 +68,19 @@ while true; do
   case $opcion in
   1) # Crea el directorio base EPNro1 con sus subcarpetas entrada, salida y procesado.
     {
-    mkdir -p "$ENTRADA_DIR" "$SALIDA_DIR" "$PROCESADO_DIR"
-    echo "Entorno creado en $BASE_DIR"
-  }
-  ;;
-  2) bash consolidar.sh
-    #llama al proceso consolidar
-  ;;
+      mkdir -p "$ENTRADA_DIR" "$SALIDA_DIR" "$PROCESADO_DIR"
+      echo "Entorno creado en $BASE_DIR"
+    }
+    ;;
+  2)
+    if [ ! -d "$BASE_DIR" ]; then
+      echo "Primero crea el entorno (opción 1)"
+    else
+      export FILENAME
+      "$BASE_DIR/consolidar.sh" &
+      echo "Proceso consolidar.sh corriendo en background"
+    fi
+    ;;
   3) #muestra todo ordenado por número de padrón
     if [ -f "$ARCHIVO" ]; then
       echo "Listado de alumnos ordenado por número de padrón:"
@@ -76,13 +99,13 @@ while true; do
     ;;
   5) #Muestra los datos segun el padron ingresado
     read -p "Ingrese el numero de padron: " padron
-     #Existencia del archivo y datos del padron
+    #Existencia del archivo y datos del padron
     if [ -f "$ARCHIVO" ]; then
       datos=$(grep "^$padron" "$ARCHIVO")
       if [ -n "$datos" ]; then
         echo "Datos Correspondientes: "
         echo "$datos"
-      else 
+      else
         echo "Sin coincidencias"
       fi
     else

@@ -12,18 +12,34 @@
 #
 # Requiere que la variable de entorno FILENAME esté exportada,
 # lo cual es responsabilidad de menu.sh antes de lanzar este proceso.
-#ps -ef | grep "consolidar.sh" | awk '{printf $2}' para obtener el proceso
-#proceso=$(ps -ef | grep -v grep | grep "consolidar.sh" | awk '{printf $2}')
-#kill $proceso
-#pa' matarlo
-camino=$PWD
-cd $HOME/EPNro1/entrada/
+
+BASE="$HOME/EPNro1"
+ENTRADA="$BASE/entrada"
+SALIDA="$BASE/salida"
+PROCESADO="$BASE/procesado"
+
+# Verifica que la variable FILENAME esté definida
+if [ -z "$FILENAME" ]; then
+  echo "Defina FILENAME"
+  exit 1
+fi
+
+ARCHIVO="$SALIDA/$FILENAME.txt"
+
+# bucle que procesa los archivos en entrada
 while true; do
-  if [ -f *.txt ];then
-    for i in *.txt; do
-      cat $i >> $HOME/EPNro1/salida/$FILENAME.txt;
-      mv $i $HOME/EPNro1/procesado/;
-    done
-  fi
-  sleep 1
-done&
+  for archivo in "$ENTRADA"/*.txt; do
+    [ -e "$archivo" ] || continue # Si no hay archivos, saltar
+
+    # Agrega el contenido al archivo final
+    cat "$archivo" >>"$ARCHIVO"
+    echo "" >>"$ARCHIVO"
+
+    # mueve el archivo procesado a la carpeta procesado
+    mv "$archivo" "$PROCESADO/"
+
+    echo "Procesado: $(basename "$archivo")" #con el basename muestra unicamente el nombre
+  done
+
+  sleep 3
+done
