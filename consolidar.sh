@@ -21,7 +21,7 @@ cd $HOME/EPNro1/entrada/
 while true; do
   if [ -f *.txt ];then
     for i in *.txt; do
-      cat $i >> $HOME/EPNro1/salida/$FILENAME;
+      cat $i >> $HOME/EPNro1/salida/$FILENAME.txt;
       mv $i $HOME/EPNro1/procesado/;
     done
   fi
