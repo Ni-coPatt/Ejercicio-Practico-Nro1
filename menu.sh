@@ -20,6 +20,23 @@ ENTRADA_DIR="$BASE_DIR/entrada"
 SALIDA_DIR="$BASE_DIR/salida"
 PROCESADO_DIR="$BASE_DIR/procesado"
 
+if [ "$1" == "-d" ]; then
+# ps -ef lista procesos, grep filtra consolidar.sh, awk toma ID
+  proceso=$(ps -ef | grep "consolidar.sh" | grep -v grep | awk '{print $2}')
+
+  if [ -n "$proceso" ]; then
+    kill $proceso   # Mata el proceso
+    echo "Proceso detenido"
+  else
+    echo "No hay proceso en ejecución"
+  fi
+
+  # Borramos todo el entorno
+  rm -rf "$BASE"
+  echo "Entorno eliminado"
+  exit 0
+fi
+
 # Función: mostrar_menu
 # Imprime el menú de opciones en pantalla.
 mostrar_menu() {
