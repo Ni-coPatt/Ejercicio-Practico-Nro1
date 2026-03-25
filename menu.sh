@@ -66,13 +66,13 @@ while true; do
   mostrar_menu
   read -r opcion
   case $opcion in
-1) # Crea el directorio base EPNro1 con sus subcarpetas entrada, salida y procesado.
+  1) # Crea el directorio base EPNro1 con sus subcarpetas entrada, salida y procesado.
     {
-    mkdir -p "$ENTRADA_DIR" "$SALIDA_DIR" "$PROCESADO_DIR"
-    cp "$(dirname "$0")/consolidar.sh" "$BASE_DIR/consolidar.sh"
-    echo "Entorno creado en $BASE_DIR"
-  }
-  ;;
+      mkdir -p "$ENTRADA_DIR" "$SALIDA_DIR" "$PROCESADO_DIR"
+      cp "$(dirname "$0")/consolidar.sh" "$BASE_DIR/consolidar.sh"
+      echo "Entorno creado en $BASE_DIR"
+    }
+    ;;
   2)
     if [ ! -d "$BASE_DIR" ]; then
       echo "Primero crea el entorno (opción 1)"
@@ -82,10 +82,10 @@ while true; do
       echo "Proceso consolidar.sh corriendo en background"
     fi
     ;;
- 3) #muestra todo ordenado por número de padrón
+  3) #muestra todo ordenado por número de padrón
     if [ -f "$ARCHIVO" ]; then
       echo "Listado de alumnos ordenado por número de padrón:"
-      cat "$ARCHIVO" | sort
+      sort -k1,1 -n "$ARCHIVO"
     else
       echo "Archivo $ARCHIVO no existe."
     fi
