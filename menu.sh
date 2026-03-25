@@ -67,11 +67,9 @@ while true; do
   read -r opcion
   case $opcion in
   1) # Crea el directorio base EPNro1 con sus subcarpetas entrada, salida y procesado.
-    {
       mkdir -p "$ENTRADA_DIR" "$SALIDA_DIR" "$PROCESADO_DIR"
       cp "$(dirname "$0")/consolidar.sh" "$BASE_DIR/consolidar.sh"
       echo "Entorno creado en $BASE_DIR"
-    }
     ;;
   2)
     if [ ! -d "$BASE_DIR" ]; then
