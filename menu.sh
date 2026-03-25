@@ -32,7 +32,7 @@ if [ "$1" == "-d" ]; then
   fi
 
   # Borramos todo el entorno
-  rm -rf "$BASE"
+  rm -rf "$BASE_DIR"
   echo "Entorno eliminado"
   exit 0
 fi
