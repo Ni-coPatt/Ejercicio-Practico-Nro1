@@ -13,10 +13,10 @@
 # Requiere que la variable de entorno FILENAME esté exportada,
 # lo cual es responsabilidad de menu.sh antes de lanzar este proceso.
 
-BASE="$HOME/EPNro1"
-ENTRADA="$BASE/entrada"
-SALIDA="$BASE/salida"
-PROCESADO="$BASE/procesado"
+BASE_DIR="$HOME/EPNro1"
+ENTRADA_DIR="$BASE_DIR/entrada"
+SALIDA_DIR="$BASE_DIR/salida"
+PROCESADO_DIR="$BASE_DIR/procesado"
 
 # Verifica que la variable FILENAME esté definida
 if [ -z "$FILENAME" ]; then
@@ -24,11 +24,11 @@ if [ -z "$FILENAME" ]; then
   exit 1
 fi
 
-ARCHIVO="$SALIDA/$FILENAME.txt"
+ARCHIVO="$SALIDA_DIR/$FILENAME.txt"
 
 # bucle que procesa los archivos en entrada
 while true; do
-  for archivo in "$ENTRADA"/*.txt; do
+  for archivo in "$ENTRADA_DIR"/*.txt; do
     [ -e "$archivo" ] || continue # Si no hay archivos, saltar
 
     # Agrega el contenido al archivo final
@@ -36,7 +36,7 @@ while true; do
     echo "" >>"$ARCHIVO"
 
     # mueve el archivo procesado a la carpeta procesado
-    mv "$archivo" "$PROCESADO/"
+    mv "$archivo" "$PROCESADO_DIR/"
 
     echo "Procesado: $(basename "$archivo")" #con el basename muestra unicamente el nombre
   done
