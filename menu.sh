@@ -78,7 +78,7 @@ while true; do
       echo "Primero crea el entorno (opción 1)"
     else
       export FILENAME
-      "$BASE_DIR/consolidar.sh" &
+      bash "$BASE_DIR/consolidar.sh" &
       echo "Proceso consolidar.sh corriendo en background"
     fi
     ;;
